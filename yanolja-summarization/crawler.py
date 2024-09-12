@@ -38,14 +38,14 @@ def crawl_yanolja_reviews():
     for i in range(len(review_containers)):
         review_text = review_containers[i].find(
             'p', class_='content-text').text
-        review_starts = review_containers[i].find_all(
+        review_stars = review_containers[i].find_all(
             'path', {'fill': '#FDBD00'})
-        star_count = len(review_starts)
+        star_count = len(review_stars)
         date = review_date[i].text
 
         review_dict = {
             'review': review_text,
-            'starts': star_count,
+            'stars': star_count,
             'date': date
         }
 
