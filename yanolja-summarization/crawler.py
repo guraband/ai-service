@@ -1,22 +1,23 @@
 import json
+import sys
 import time
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
 
 
-URL = "https://www.yanolja.com/reviews/domestic/3012015?sort=HOST_CHOICE"
+# URL = "https://www.yanolja.com/reviews/domestic/3012015?sort=HOST_CHOICE"
 
 
-def crawl_yanolja_reviews():
+def crawl_yanolja_reviews(name, url):
     print("hi")
     reviews = []
     driver = webdriver.Chrome()
-    driver.get(URL)
+    driver.get(url)
 
     time.sleep(3)
 
-    scroll_count = 10
+    scroll_count = 20
 
     for i in range(scroll_count):
         driver.execute_script(
@@ -51,9 +52,10 @@ def crawl_yanolja_reviews():
 
         reviews.append(review_dict)
 
-    with open('./resource/reviews.json', 'w') as f:
+    with open(f'./resource/{name}_reviews.json', 'w') as f:
         json.dump(reviews, f, indent=4, ensure_ascii=False)
 
 
 if __name__ == '__main__':
-    crawl_yanolja_reviews()
+    name, url = sys.argv[1], sys.argv[2]
+    crawl_yanolja_reviews(name, url)
