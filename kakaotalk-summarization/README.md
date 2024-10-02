@@ -4,6 +4,7 @@
 > python -m venv .venv
 > source deactivate
 > source .venv/bin/activate
+> export OPENAI_API_KEY=aaaa
 > pip list
 > pip install -r requirements.txt
 > pip list
