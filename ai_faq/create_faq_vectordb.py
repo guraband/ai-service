@@ -1,5 +1,7 @@
 import pickle
 import os
+from langchain_community.vectorstores import FAISS
+from langchain_openai import OpenAIEmbeddings
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
@@ -16,4 +18,10 @@ if __name__ == "__main__":
         # print(qa["answer"])
         print("-"*50)
 
-    # FEISS.from_texts(faq_data)
+    db = FAISS.from_texts(
+        questions,
+        embedding=OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY),
+        metadatas=faq_data
+    )
+
+    db.save_local("faq.index")
