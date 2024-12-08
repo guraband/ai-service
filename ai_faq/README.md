@@ -11,3 +11,5 @@ alias pip=pip3
 ### 가상환경 비활성화
 deactivate
 
+### requirements.txt 생성
+pip freeze > requirements.txt
