@@ -3,3 +3,6 @@ kakaotalk-summarization/.venv/
 kakaotalk-summarization/resource/
 rag/.venv/
 practice/.venv/
+ai_faq/resource/
+ai_faq/zone_faq/
+invest_assistant/invest/
