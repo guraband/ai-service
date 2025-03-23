@@ -1,13 +1,8 @@
 ### 초기 환경 세팅
-```
-> cd kakaotalk-summarization
-> python -m venv .venv
-> source deactivate
-> source .venv/bin/activate
-> export OPENAI_API_KEY=aaaa
-> pip list
-> pip install -r requirements.txt
-> pip list
+```shell
+# 우선 기존 가상 환경 사용
+# which python3
+# ~/Documents/workspace/fastcampus/al-llm/ai-service/ai_faq/faq/bin/python3
 ```
 
 ### 사용한 데이터
