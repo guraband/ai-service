@@ -7,3 +7,7 @@
 
 ### 사용한 데이터
 - AI hub > SNS 데이터 고도화
+
+
+### 예제 github
+- https://github.com/rein20/ai-service/tree/main/kakaotalk-summarization
