@@ -8,7 +8,7 @@ OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
 
 
 def get_eval_data():
-    with open('./res/eval_data.pickle', 'rb') as f:
+    with open('./resource/eval_data.pickle', 'rb') as f:
         eval_data = pickle.load(f)
 
     return eval_data
