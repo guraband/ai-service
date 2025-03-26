@@ -10,7 +10,7 @@ from openai import OpenAI
 
 
 ANTHROPIC_API_KEY = os.environ['CLAUDE_API_KEY']
-GOOGLE_API_KEY = os.environ['GEMINI_API_KEY']
+GEMINI_API_KEY = os.environ['GEMINI_API_KEY']
 OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
 MAX_LEN = 3000
 
@@ -29,7 +29,7 @@ def shorten_conv(conversation):
     return conv_shortened
 
 
-def summarize(conversation, prompt, temperature=0.0, model='gpt-3.5-turbo-0125'):
+def summarize(conversation, prompt, temperature=0.0, model='gemini-2.0-flash'):
     if len(conversation) > MAX_LEN:
         conversation = shorten_conv(conversation)
 
@@ -45,14 +45,20 @@ def summarize(conversation, prompt, temperature=0.0, model='gpt-3.5-turbo-0125')
 
         return completion.choices[0].message.content
     elif 'gemini' in model:
-        genai.configure(api_key=GOOGLE_API_KEY)
-        client = genai.GenerativeModel(model)
-        response = client.generate_content(
+        client = genai.Client(api_key=GEMINI_API_KEY)
+        response = client.models.generate_content(
+            model=model,
             contents=prompt,
-            safety_settings={
-                types.HarmCategory.HARM_CATEGORY_HARASSMENT: types.HarmBlockThreshold.BLOCK_NONE
-            }
+            config=types.GenerateContentConfig(
+                temperature=temperature,
+            ),
         )
+        # response = client.generate_content(
+        #     contents=prompt,
+        #     safety_settings={
+        #         types.HarmCategory.HARM_CATEGORY_HARASSMENT: types.HarmBlockThreshold.BLOCK_NONE
+        #     }
+        # )
         time.sleep(1)
 
         return response.text
